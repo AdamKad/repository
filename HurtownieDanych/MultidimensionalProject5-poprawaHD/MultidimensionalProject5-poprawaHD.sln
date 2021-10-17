@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "MultidimensionalProject5-poprawaHD", "MultidimensionalProject5-poprawaHD\MultidimensionalProject5-poprawaHD.dwproj", "{0275151E-6639-4B06-8456-0E60FEC76127}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0275151E-6639-4B06-8456-0E60FEC76127}.Development|Default.ActiveCfg = Development
+		{0275151E-6639-4B06-8456-0E60FEC76127}.Development|Default.Build.0 = Development
+		{0275151E-6639-4B06-8456-0E60FEC76127}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0A5FA3C6-D5E0-495E-96D5-A358982A245F}
+	EndGlobalSection
+EndGlobal
