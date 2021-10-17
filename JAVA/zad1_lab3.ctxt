@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=args
+comment0.target=void\ main(java.lang.String[])
+comment1.params=number\ times
+comment1.target=int[]\ duplicate(int[],\ int[])
+comment2.params=tab
+comment2.target=void\ printTab(int[])
+numComments=3
