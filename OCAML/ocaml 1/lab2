@@ -1,0 +1,31 @@
+//zad 1 ocaml
+
+
+	let rec dziel xs = 
+	match xs with
+	| []   -> ([],[])	
+	| h::t -> let (x,y) = dziel t in 
+		if (h mod 2) = 0 then (h::x, y)
+		else  (x,h::y);;
+		
+	dziel ([1;2;3;4;5;6;6]);;
+	dziel ([1;5;6;6]);;
+	dziel ([1;1;1;1;1;1;2;3;4;5;6;6]);;
+	
+	
+	//zad 3 ocaml
+	
+	
+let rec polacz(list1,list2)=
+	match (list1,list2) with
+	| ([],[]) -> []
+	| (_,[]) -> list1
+	| ([],_) -> list2
+	|(_,_) -> List.hd list1 :: List.hd list2 :: polacz(List.tl list1,List.tl list2);;
+	
+	
+		polacz([1;2;3;4;5],[9;10;11;12;13]);;
+		polacz([1;2],[2;3;4]);;
+		polacz([],[]);;
+
+	

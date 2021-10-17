@@ -1,0 +1,9 @@
+// scala
+
+def listLength(list:List[Int]):Int=
+	if (list==Nil) 0
+	else 1+listLength(list.tail)
+
+listLength(List(1,2,2,2,2,2))
+listLength(List(1,2,2,22,2,2,2,2,2,2))
+listLength(List(1,2))

@@ -1,0 +1,86 @@
+class Point(xv: Int, yv: Int) extends Debug {
+  var x: Int = xv
+  var y: Int = yv
+  var a: String = "test"
+}
+
+class Person(private val name: String, private var age: Int) extends Debug {
+
+}
+
+
+trait Debug {
+  def debugName(): Unit = {
+    println("Klasa: " + getClass.getSimpleName )    //Zamiast getSimpleName mo¿na u¿yæ getName jednak wtedy wypisuje te¿ nazwê pakietu
+  }
+
+  def debugVars(): Unit = {
+    val fields = getClass.getDeclaredFields
+    for (field <- fields) {
+      field.setAccessible(true)
+      println("Pole: " + field.getName + " => " + field.getType + ", " + field.get(this))
+    }
+  }
+}
+
+object Main {
+  def main(args: Array[String]): Unit = {
+    val point = new Point(2, 3)
+    val person = new Person("Adam", 21)
+
+    println("Zadanie 1: ")
+    point.debugName()
+    person.debugName()
+
+    println("\nZadanie 2: ")
+    point.debugVars()
+    println()
+    person.debugVars()
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+lllllllllllllllll
+
+
+
+
+
+import akka.actor._
+ 
+case class Ball(msg: String, counter: Int)
+ 
+class Player extends Actor {
+  def receive: PartialFunction[Any, Unit] = {
+    case Ball(_, 0) =>
+      println("end of game")
+      context.system.terminate()
+    case Ball("ping", k) =>
+      println("pong")
+      sender ! Ball("pong", k - 1)
+    case Ball("pong", k) =>
+      println("ping")
+      sender ! Ball("ping", k - 1)
+    case _ =>
+      println("Wrong request")
+  }
+}
+ 
+object Main extends App {
+  val system = ActorSystem("MySystem")
+  val player1 = system.actorOf(Props[Player])
+  val player2 = system.actorOf(Props[Player])
+  player1.tell(Ball("pong", 5), player2)
+}
+

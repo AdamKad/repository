@@ -1,0 +1,20 @@
+def f(n:Int):Int =
+  n match {
+    case 0 => 0
+    case 1 => 1
+    case _ => f(n-2) + f(n-1)
+}
+ 
+f(42)
+ 
+def f(n:Int) = {
+  def fHelper(n:Int, f1:Int, f2:Int):Int =
+    n match {
+      case 0 => f1
+      case 1 => f2
+      case _ => fHelper(n - 1, f2, f1 + f2)
+  }
+  fHelper(n, 0, 1)
+}
+ 
+f(42)

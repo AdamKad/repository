@@ -1,0 +1,115 @@
+// zas1
+
+
+let rec duplicate(b, t) =
+    let rec rep(x, times, acc) =
+        if times > 0 then rep(x, times - 1, x::acc)
+        else acc in
+
+    match (b, t) with
+    | (hb::_, []) -> []
+    | (hb::tb, ht::tt) -> rep(hb, ht, [])@duplicate(tb, tt)
+    | _ -> [];;
+
+duplicate([0;1;2], [0;2;4;1]);;
+
+
+//zad2 gorliwa
+
+let rec polacz(la, lb) =
+    match (la, lb) with
+    | (a::at, b::bt) -> a::b::polacz(at, bt)
+    | ([], b::bt) -> b::polacz(bt, [])
+    | (a::at, []) -> a::polacz(at, [])
+    | _ -> [];;
+
+polacz([1;3;5;7;9;11], [2;4;6;8]);;
+polacz([1;3;5;7;9;11], []);;
+polacz([], [2;4;6;8]);;
+polacz([1;3;5;7;9;11], [2;]);;
+
+
+//zad2 leniwa
+
+type 'a llist = LNil | LCons of 'a * (unit -> 'a llist);;
+
+(*Tworzy liste leniwa od zadanej wartosci do nieskonczonosci*)
+let rec lfrom k = LCons (k, function () -> lfrom (k+1));;
+(*Zraca jako liste k poczatkowych elementow*)
+let rec ltake = function
+| (0, _) -> []
+| (_, LNil) -> []
+| (n, LCons(x,xf)) -> x::ltake(n-1, xf());;
+
+
+let rec lpolacz(lla, llb) =
+    match (lla, llb) with
+    | (LCons(a, at), LCons(b, bt)) -> LCons(a, fun () -> lpolacz(llb, at()))
+    | (LNil, LCons(b, bt)) -> LCons(b, fun () -> lpolacz(bt(), LNil))
+    | (LCons(a, at), LNil) -> LCons(a, fun () -> lpolacz(at(), LNil))
+    | _ -> LNil;;
+
+ltake(15,lpolacz(lfrom(3), lfrom(15)));;
+ltake(15, lpolacz(lfrom(-5), LNil));;
+ltake(15, lpolacz(LNil, lfrom(80)));;
+
+
+zad 9.1 cwiczenia==============================
+
+class Time(h1: Int) {  
+  private[this] var h : Int = 0
+  if (h1 > 0) h = h1
+   
+  def hour: Int = h
+  def hour_=(x: Int) {
+      if (x > 0) h = x
+      else h = 0
+  }
+}
+ 
+object Time {
+  def apply(hour: Int) = new Time(hour)
+}
+ 
+object Test1 extends App { 
+  val t = Time(-1)
+  val t2 = Time(3)
+  println(t.hour)
+  println(t2.hour)  
+  t.hour = -2
+  println(t.hour)
+  t.hour = 4
+  println(t.hour)
+  t.hour = -2
+  println(t.hour)
+}
+
+zad2.3 lista 9 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+class Time(h1: Int, m1: Int) {
+  private var h : Int = _
+  require(0 <= h1 && h1 < 24)
+  h = h1
+  private var m : Int = _
+  require(0 <= m1 && m1 < 60)
+  m = m1
+   
+  def hour: Int = h
+  def hour_=(x: Int) {
+    require(0 <= x && x < 24)
+    h = x
+  }
+  def minute: Int = m
+  def minute_=(x: Int) {
+    require(0 <= x && x < 60)
+    m = x
+  }
+  def before(other: Time) =
+    h < other.h || h == other.h && m < other.m
+}
+ 
+object Test extends App {
+  val t = new Time(21, 15)
+  val t2 = new Time(23, 14)
+  println(t.before(t2))
+}

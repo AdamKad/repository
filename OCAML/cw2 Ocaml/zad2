@@ -1,0 +1,22 @@
+let rec f n = 
+	match n with
+  	0 -> 0
+  | 1 -> 1
+  | _ -> f(n-2) + f(n-1);;
+
+f 42;;
+
+
+
+
+let f n = fHelper(n, 0, 1);;
+
+let rec fHelper(n, f1, f2) = 
+  match n with
+    0 -> f1
+  | 1 -> f2
+  | _ -> fHelper(n - 1, f2, f1 + f2);;
+  
+f 42;;
+
+

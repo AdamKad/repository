@@ -1,0 +1,31 @@
+ zad 1-OCaml
+
+let rec suma list=
+ if list=[] then 0
+ else List.hd list + suma(List.tl list);;
+
+suma[1;2;3];;
+suma[1;22;5];;	
+suma[1;12;13];;
+ 
+ // 6  28  26	
+
+zad2-OCaml.....................................................................................
+
+let sumak (a,b,c,d) = 
+	a +. b +. c +. d;;
+
+sumak (3.,2.,5.,1.);; 	
+sumak(1.;22.;5.;4.);;	
+sumak(1.;12.;13.4;5.);;	
+
+// 8  32  31
+
+zad3 OCaml........................................................................................
+
+let rec polacz (list,sep) = 
+	if list = [] then ""
+	else List.hd list ^ sep ^ polacz(List.tl list,sep);;
+ 
+ polacz(["To"; "jest"; "napis"], "-");; 
+ polacz(["bla";"bla";"bla"],"-");;
